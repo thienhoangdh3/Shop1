@@ -262,4 +262,13 @@ td:hover {
 .images_nick {
     width: 100px;
     height: 100px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.images_nick:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(2.5);
 }

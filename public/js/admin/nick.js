@@ -9,6 +9,7 @@ $(document).ready(function(){
     $('div#alert-err').hide();
     // $('div.col-sm-12 col-md-6').removeClass('col-sm-12 col-md-6');
 
+
     $(document).on('click', '.btn-view', function() {
         var id_nick = $(this).val();
         console.log(id_nick);
@@ -44,22 +45,9 @@ $(document).ready(function(){
                     image.alt = "Alt information for image";
                     image.setAttribute('class', 'images_nick');
                     image.src="../../storage/nick/" + val;
-                    // var path = "<img scr='../../storage/nick/" + val + "' " + "alt='abc'>";
-                    // console.log(path);
+                    image.id = "myImg";
                     $("span#images").append(image);
                 });
-
-                // $.map( images, function( val) {
-                //     var image = document.createElement("IMG");
-                //     image.alt = "Alt information for image";
-                //     image.setAttribute('class', 'photo');
-                //     image.src="../../storage/nick/" + val;
-                //     var path = "<img scr='../../storage/nick/" + val + "' " + "alt='abc'>";
-                //     console.log(path);
-                //     $("span#images").html(image);
-                //   });
-
-                // $("span#images").append(notes);
                 $('button#edit').val(data.id);
             }
         });
@@ -67,10 +55,25 @@ $(document).ready(function(){
 
     $('#view').on('hidden.bs.modal', function () {
         // do something…
-        alert("abc");
-        $("span#notes").append("");
-        $("span#images").append("");
-      });
+        $("span#images").html("");
+        $("span#notes").html("");
+    });
+
+
+    $(document).on('change', 'select', function(){
+        var ttgt = $('#ttgt').val();
+        var status = $('#status').val();
+        var sv = $('#servers').val();
+        var cls = $('#class_acc').val();
+        $.ajax({
+            type : "GET",
+            url : '/admin/nick/search/' + sv + '/' + cls + '/' + ttgt + '/' + status,
+            success : function(data){
+                console.log(data);
+            }
+        });
+    });
+
 
     // Delete User
     $(document).on('click', '.btn-delete', function(){ 
@@ -95,7 +98,6 @@ $(document).ready(function(){
             type   : "GET",
             url    : 'nhanvien/' + userid + '/edit',
             success: function(data){
-
                 $("h4#title").text("Sửa Thông Tin Nhân Viên ID: " + data.id)
                 $("input#u-id").val(data.id);
                 $("input#u-fullname").val(data.fullname);

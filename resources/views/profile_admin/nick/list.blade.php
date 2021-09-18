@@ -41,7 +41,7 @@
 
                     <div class="border mr-5 select-box">
                       <span class="p-2 border-right">Status</span>
-                      <select class="btn text-left" name="ttgt" id="ttgt" >
+                      <select class="btn text-left" name="status" id="status" >
                         <option active>Tất Cả</option>
                         <option value="0" >Chưa bán</option>
                         <option value="1">Đã Bán</option>

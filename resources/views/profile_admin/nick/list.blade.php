@@ -9,7 +9,7 @@
                   </a>
                 </div>
                 <nav class="navbar navbar-light bg-light justify-content-between">
-                  <form action="" method="get" class="form-inline">
+                  <form action="{{route('nick.index')}}" method="get" class="form-inline">
                     <div class="border mr-5 select-box" >
                       <span class="p-2 border-right" for="servers">Server</span>
                       <select class="btn text-left" name="servers" id="servers">

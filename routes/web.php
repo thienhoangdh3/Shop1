@@ -52,6 +52,5 @@ Route::prefix('admin')->group(function () {
         Route::get('create', [AdminNickController::class, 'create'])->name('nick.create');
         Route::post('create', [AdminNickController::class, 'store'])->name('nick.store');
         Route::get('/{id}', [AdminNickController::class, 'view']);
-        Route::get('search/{sv}/{cls}/{ttgt}/{status}', [AdminNickController::class, 'search']);
     });
 });

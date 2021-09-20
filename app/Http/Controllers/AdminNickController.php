@@ -17,9 +17,31 @@ class AdminNickController extends Controller
         return [$class, $sv];
     }
 
-    public function index()
+    public function index(Request $request)
     {
         list($class, $sv) = $this->sql();
+        if(isset($_GET['query'])){
+            is_numeric($request->servers)   ? $servers   = $request->servers    :  $servers   = "";
+            is_numeric($request->class_acc) ? $class_acc = $request->class_acc  :  $class_acc = "";
+            is_numeric($request->ttgt)      ? $ttgt      = $request->ttgt       :  $ttgt      = "";
+            is_numeric($request->status)    ? $status    = $request->status     :  $status    = "";
+            $search = $_GET['query'];
+            $datas = Nick::where([
+                                ['sv_id',    'LIKE', '%'.$servers.'%'],
+                                ['class_id', 'LIKE', '%'.$class_acc.'%'],
+                                ['clan',     'LIKE', '%'.$ttgt.'%'],
+                                ['status',   'LIKE', '%'.$status.'%'],
+                                ['level',    'LIKE', '%'.$search.'%']
+                                ])
+                        ->orWhere([
+                                ['id',       'LIKE', '%'.$search.'%'],
+                                ['price',    'LIKE', '%'.$search.'%'],
+                                ['notes',    'LIKE', '%'.$search.'%'],
+                                ['username', 'LIKE', '%'.$search.'%']
+                        ])
+                        ->paginate(5);
+            return view('profile_admin.nick.list')->with(compact('datas', 'sv', 'class'));
+        }
         $datas = Nick::paginate(5);
         return view('profile_admin.nick.list')->with(compact('datas', 'sv', 'class'));
     }
@@ -77,26 +99,5 @@ class AdminNickController extends Controller
         return response()->json($data, Response::HTTP_OK);
     }
 
-    public function search($sv, $cls, $ttgt, $status)
-    {
-        // if (Server::where('id', '=', $sv)->count() == 0) {
-        //     $sv = "1";
-        // }
-        // if (ClassAcc::where('id', '=', $cls)->count() == 0) {
-        //     $cls = "";
-        // }
-        if (Nick::where('clan', '=', $ttgt)->count() == 0) {
-            $ttgt = "";
-        }
-        // if (Nick::where('id', '=', $status)->count() == 0) {
-        //     $status = "";
-        // }
-        $data = Nick::where('clan', 'LIKE', '%'.$ttgt.'%')
-                    // ->orWhere('class_id', 'LIKE', '%'.$cls.'%')
-                    // ->orWhere('sv_id', 'LIKE', '%'.$sv.'%')
-                    // ->orWhere('status', 'LIKE', '%'.$status.'%')
-                    ->get();
-        // $data = $sv.$cls.$ttgt.$status;
-        return response()->json($ttgt, Response::HTTP_OK);
-    }
+
 }

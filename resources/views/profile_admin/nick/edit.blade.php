@@ -1,67 +1,123 @@
-
-<div class="modal fade" id="edit" tabindex="-1" data-backdrop="false" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="id_nick"> </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group row">
-                <label class="col-md-3 text-md-right font-weight-bold" >ID : </label>
-                <span class="col-md-8" id="id"></span>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 text-md-right font-weight-bold" >Ingame : </label>
-                <span class="col-md-8" id="ingame"></span>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 text-md-right font-weight-bold" >Level : </label>
-                <span class="col-md-8" id="level"></span>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 text-md-right font-weight-bold" >Class : </label>
-                <span class="col-md-8" id="class_nick"></span>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 text-md-right font-weight-bold" >Server : </label>
-                <span class="col-md-8" id="sv_nick"></span>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 text-md-right font-weight-bold" >TTGT : </label>
-                <span class="col-md-8" id="ttgt"></span>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 text-md-right font-weight-bold" >Giá : </label>
-                <span class="col-md-8" id="price"></span>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 text-md-right font-weight-bold" >Username : </label>
-                <span class="col-md-8" id="username"></span>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 text-md-right font-weight-bold" >Password : </label>
-                <span class="col-md-8" id="password"></span>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 text-md-right font-weight-bold" >Ảnh : </label>
-                <span class="col-md-8" id="images">
-                  {{-- <img src="../../storage/nick/67680.jpg" alt="bvnbvn"> --}}
-                </span>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 text-md-right font-weight-bold" >Ghi chú : </label>
-                <span class="col-md-8" id="notes"></span>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            <button type="button" id="edit"  class="btn btn-primary" data-toggle="modal" data-target="#edit">Sửa</button>
-          </div>
+@extends('profile_admin.index')
+@section('content')
+<div class="justify-content-center">
+    <div class="card">
+        <div class="card-header h2">
+          <b>Sửa Thông Tin Nick ID: {{$data->id}}</b> 
+          <a href="{{route('nick.index')}}" class="btn btn-dark text-light float-right ">
+            <i class="far fa-list-alt"></i>  Danh Sách
+          </a>
         </div>
-      </div>
+        <div class="card-body">
+            <div class="container">
+                <form action="{{route('nick.store')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @include('alert')
+                    <div class="form-group row">
+                        <label for="ingame" class="col-md-4 col-form-label text-md-right"><b>Ingame:</b></label>
+                        <div class="col-md-6">
+                            <input type="text" id="ingame" class="form-control" placeholder="Ingame"
+                            value="{{$data->ingame}}" name="ingame" required maxlength="11">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="username" class="col-md-4 col-form-label text-md-right"><b>Username:</b></label>
+                        <div class="col-md-6">
+                            <input type="text" id="username" class="form-control" placeholder="Username"
+                            value="{{ $data->username }}" name="username" required maxlength="30">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="password" class="col-md-4 col-form-label text-md-right"><b>Pasword:</b></label>
+                        <div class="col-md-6">
+                            <input type="password" id="password" class="form-control" placeholder="Password"
+                            value="{{ $data->password }}" name="password" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="level" class="col-md-4 col-form-label text-md-right"><b>Level:</b></label>
+                        <div class="col-md-6">
+                            <input type="number" id="level" class="form-control" placeholder="Level"
+                            value="{{ $data->level }}" name="level" min="1" max="130" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="ttgt" class="col-md-4 col-form-label text-md-right"><b>Trưởng Gia Tộc:</b></label>
+                        <div class="col-md-6 pt-2 ml-1">
+                            @if ($data->clan == 1)
+                              <input type="checkbox" style="transform: scale(1.5);" id="ttgt" name="ttgt" checked>
+                            @else
+                              <input type="checkbox" style="transform: scale(1.5);" id="ttgt" name="ttgt">
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="class_acc" class="col-md-4 col-form-label text-md-right"><b>Class:</b></label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="class_acc" id="class_acc">
+                                <option active >-- Class --</option>
+                                @foreach ($class as $class)
+                                  <option value="{{$class->id}}" >{{$class->class}}</option>
+                                @endforeach
+                              </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="server" class="col-md-4 col-form-label text-md-right"><b>Server:</b></label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="server_acc" id="server_acc">
+                                <option active >-- Server --</option>
+                                @foreach ($sv as $sv)
+                                  <option value="{{$sv->id}}" >{{$sv->sv_name}}</option>
+                                @endforeach
+                              </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="price" class="col-md-4 col-form-label text-md-right"><b>Giá:</b></label>
+                        <div class="col-md-6">
+                            <input type="number" id="price" class="form-control" placeholder="Giá"
+                            value="{{ $data->price }}" name="price" min="0" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="notes" class="col-md-4 col-form-label text-md-right"><b>Chi tiết Nick:</b></label>
+                        <div class="col-md-6">
+                            <textarea name="notes" id="notes" class="ckeditor" >{!! $data->notes !!}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="images" class="col-md-4 col-form-label text-md-right"><b>Ảnh:</b></label>
+                        <div class="col-md-6">
+                            @php
+                                $img = json_decode($data->images, true);
+                            @endphp
+                            @foreach ($img as $img)
+                              <img class="images_nick" src="{{asset('storage/nick/'.$img)}}" alt="">
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="offset-md-5">
+                        <button type="submit" class="btn btn-primary">
+                            Xác Nhận
+                        </button>
+                    </div>
+                    
+                    
+                </form>
+            </div>
+            
+        </div>   
     </div>
 </div>
+@endsection

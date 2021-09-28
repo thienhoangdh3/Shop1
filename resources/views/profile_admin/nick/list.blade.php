@@ -95,11 +95,12 @@
                                     <td width="10%" class="align-middle">
                
                                         <button value="{{$data->id}}" type="button" class="btn btn-outline-primary btn-view"
-                                          data-toggle="modal" data-target="#view" > <i class="fas fa-eye" ></i>  </button>
-                                        <button value="{{$data->id}}" type="button" class="btn btn-outline-warning btn-edit"
-                                            data-toggle="modal" data-target="#edit" > <i class="fas fa-pen"></i> </button>
-                                        <button value="{{$data->id}}" type="button" 
-                                            class="btn btn-outline-danger btn-delete"> <i class="fas fa-trash-alt"></i> </button>
+                                            data-toggle="modal" data-target="#view" > <i class="fas fa-eye" ></i>  </button>
+                                        <a href="{{ route('nick.edit', $data->id) }}" class="btn btn-outline-warning"><i class="fas fa-pen"></i></a>
+                                        {{-- <button value="{{$data->id}}" type="button" class="btn btn-outline-warning btn-edit"
+                                            data-toggle="modal" data-target="#edit" >  </button> --}}
+                                        <button value="{{$data->id}}" type="button" class="btn btn-outline-danger btn-delete"> 
+                                            <i class="fas fa-trash-alt"></i> </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -115,7 +116,10 @@
                 </div>   
             </div> 
     </div>
+
 @include('profile_admin.nick.view')    
-@include('profile_admin.nick.edit') 
+
+
+
 <script src="{{asset('js/admin/nick.js')}}"></script>
 @endsection

@@ -1,5 +1,5 @@
 
-<div class="modal fade" id="view" tabindex="-1" data-backdrop="false" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="view" tabindex="-1" data-backdrop="false" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
 
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">

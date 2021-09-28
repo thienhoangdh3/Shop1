@@ -99,5 +99,10 @@ class AdminNickController extends Controller
         return response()->json($data, Response::HTTP_OK);
     }
 
-
+    public function edit($id)
+    {
+        $data = Nick::find($id);
+        list($class, $sv) = $this->sql();
+        return view('profile_admin.nick.edit')->with(compact('data', 'class', 'sv'));
+    }
 }

@@ -48,7 +48,7 @@
 
                     <div class="form-group row">
                         <label for="ttgt" class="col-md-4 col-form-label text-md-right"><b>Trưởng Gia Tộc:</b></label>
-                        <div class="col-md-6 pt-2">
+                        <div class="col-md-6 pt-2 ml-1">
                             <input type="checkbox" style="transform: scale(1.5);" id="ttgt" name="ttgt">
                         </div>
                     </div>

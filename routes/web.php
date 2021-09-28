@@ -48,9 +48,10 @@ Route::prefix('admin')->group(function () {
     });
     
     Route::prefix('nick')->group(function () {
-        Route::get('/', [AdminNickController::class, 'index'])->name('nick.index');
-        Route::get('create', [AdminNickController::class, 'create'])->name('nick.create');
+        Route::get ('/',     [AdminNickController::class, 'index'])->name('nick.index');
+        Route::get ('create', [AdminNickController::class, 'create'])->name('nick.create');
         Route::post('create', [AdminNickController::class, 'store'])->name('nick.store');
-        Route::get('/{id}', [AdminNickController::class, 'view']);
+        Route::get ('/{id}', [AdminNickController::class, 'view']);
+        Route::get ('/edit/{id}', [AdminNickController::class, 'edit'])->name('nick.edit');
     });
 });

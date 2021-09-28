@@ -8,9 +8,10 @@
             <i class="far fa-list-alt"></i>  Danh Sách
           </a>
         </div>
-        <div class="card-body">
-            <div class="container">
-                <form action="{{route('nick.store')}}" method="POST" enctype="multipart/form-data">
+        <div class="card-body ">
+            <div class="container ">
+                <form action="{{route('nick.update', $data->id)}}" method="post" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                     @include('alert')
                     <div class="form-group row">
@@ -60,10 +61,11 @@
                         <label for="class_acc" class="col-md-4 col-form-label text-md-right"><b>Class:</b></label>
                         <div class="col-md-6">
                             <select class="form-control" name="class_acc" id="class_acc">
-                                <option active >-- Class --</option>
+                                
                                 @foreach ($class as $class)
-                                  <option value="{{$class->id}}" >{{$class->class}}</option>
+                                  <option value="{{$class->id}}" {{($class->id == $data->class_id) ? 'selected' : NULL}}> {{$class->class}} </option>
                                 @endforeach
+
                               </select>
                         </div>
                     </div>
@@ -72,9 +74,8 @@
                         <label for="server" class="col-md-4 col-form-label text-md-right"><b>Server:</b></label>
                         <div class="col-md-6">
                             <select class="form-control" name="server_acc" id="server_acc">
-                                <option active >-- Server --</option>
                                 @foreach ($sv as $sv)
-                                  <option value="{{$sv->id}}" >{{$sv->sv_name}}</option>
+                                  <option value="{{$sv->id}}" {{($sv->id == $data->sv_id) ? 'selected' : NULL}}>{{$sv->sv_name}}</option>
                                 @endforeach
                               </select>
                         </div>
@@ -89,6 +90,21 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="status" class="col-md-4 col-form-label text-md-right"><b>Trạng Thái:</b></label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="status" id="status">
+                                @if ($data->status == 1)
+                                    <option value="1" selected>Đã Bán</option>
+                                    <option value="0">Chưa Bán</option>
+                                @else
+                                    <option value="0" selected>Chưa Bán</option>
+                                    <option value="1">Đã Bán</option>
+                                @endif
+                              </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="notes" class="col-md-4 col-form-label text-md-right"><b>Chi tiết Nick:</b></label>
                         <div class="col-md-6">
                             <textarea name="notes" id="notes" class="ckeditor" >{!! $data->notes !!}</textarea>
@@ -98,13 +114,20 @@
                     <div class="form-group row">
                         <label for="images" class="col-md-4 col-form-label text-md-right"><b>Ảnh:</b></label>
                         <div class="col-md-6">
-                            @php
-                                $img = json_decode($data->images, true);
-                            @endphp
-                            @foreach ($img as $img)
-                              <img class="images_nick" src="{{asset('storage/nick/'.$img)}}" alt="">
-                            @endforeach
+                            <div class="boder pb-3">
+                                <input type="file" name="images[]"  accept="image/*" id="images" multiple>
+                            </div>
+                            <div>
+                                @php
+                                    $img = json_decode($data->images, true);
+                                @endphp
+                                @foreach ($img as $img)
+                                    <img class="images_nick" src="{{asset('storage/nick/'.$img)}}" alt="">
+                                @endforeach
+                            </div>
+                           
                         </div>
+                       
                     </div>
 
                     <div class="offset-md-5">
@@ -116,7 +139,6 @@
                     
                 </form>
             </div>
-            
         </div>   
     </div>
 </div>

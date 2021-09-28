@@ -7,6 +7,8 @@ use App\Models\Nick;
 use App\Models\Server;
 use App\Models\ClassAcc;
 use Symfony\Component\HttpFoundation\Response;
+use File;
+use Illuminate\Support\Facades\Storage;
 
 class AdminNickController extends Controller
 {
@@ -59,7 +61,7 @@ class AdminNickController extends Controller
             'images.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
           ]);
           
-        ($request->ttgt == 'on') ? $request->ttgt = '1' : $request->ttgt = '0';
+        $request->ttgt == 'on' ? $request->ttgt = '1' : $request->ttgt = '0';
 
         $files = [];
         $i = 0;
@@ -104,5 +106,51 @@ class AdminNickController extends Controller
         $data = Nick::find($id);
         list($class, $sv) = $this->sql();
         return view('profile_admin.nick.edit')->with(compact('data', 'class', 'sv'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $nick = Nick::find($id);
+        $request->ttgt == 'on' ? $request->ttgt = '1' : $request->ttgt = '0';
+        // $result = Nick::where('id', $id)
+        //             ->update([
+        //                 'ingame' => $request->ingame,
+        //                 'price' => $request->price,
+        //                 'clan' => $request->ttgt,
+        //                 'level' => $request->level,
+        //                 'class_id' => $request->class_acc,
+        //                 'sv_id' => $request->server_acc,
+        //                 'notes' => $request->notes,
+        //                 'username' => $request->username,
+        //                 'password' => $request->password,
+        //                 'status' => $request->status,
+        //             ]);
+        
+        $files = [];
+        $i = 0;
+        if($request->hasfile('images'))
+        {
+            $img = json_decode($nick->images, true);
+            var_dump($img);
+            foreach($img as $img)
+            {
+                $destination = 'app/public/nick/'.$img;
+                if(File::exists($destination)){
+                    File::delete($destination);
+                    var_dump($destination);
+                }
+            }
+            
+            // foreach($request->file('images') as $file)
+            // {
+            //     $name = $request->ingame.$i++.'.'.$file->extension();
+            //     $file->storeAs('nick', $name);  
+            //     $files[] = $name;  
+            // }
+            // Nick::where('id', $id)->update(['images' => json_encode($files)]);
+        }else{
+            var_dump(false);die;
+        }
+
     }
 }

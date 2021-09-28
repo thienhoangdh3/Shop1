@@ -43,7 +43,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index']) ->name('admin.index');
 
     Route::prefix('users')->group(function () {
-        Route::get('/', [AdminController::class, 'listUser'])->name('admin.user.list');
+        Route::get('/',  [AdminController::class, 'listUser'])->name('admin.user.list');
         Route::post('/', [AdminController::class, 'postFile'])->name('postfile');
     });
     
@@ -53,5 +53,6 @@ Route::prefix('admin')->group(function () {
         Route::post('create', [AdminNickController::class, 'store'])->name('nick.store');
         Route::get ('/{id}', [AdminNickController::class, 'view']);
         Route::get ('/edit/{id}', [AdminNickController::class, 'edit'])->name('nick.edit');
+        Route::put ('/edit/{id}', [AdminNickController::class, 'update'])->name('nick.update');
     });
 });

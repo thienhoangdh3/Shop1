@@ -16,7 +16,7 @@ class AdminNickController extends Controller
     {
         $class = ClassAcc::all();
         $sv    = Server::all();
-        return [$class, $sv];
+        return [$class, $sv]; 
     }
 
     public function index(Request $request)

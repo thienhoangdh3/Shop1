@@ -149,6 +149,7 @@ class AdminNickController extends Controller
             // }
             // Nick::where('id', $id)->update(['images' => json_encode($files)]);
         }else{
+         
             var_dump(false);die;
         }
 

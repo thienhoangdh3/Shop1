@@ -23,6 +23,6 @@ class AdminController extends Controller
     public function postFile(Request $request)
     {
         // dd($request->file("abc")->store("", "google"));
-        // dd(Storage::disk('google')->allFiles());
+        // dd(Storage::disk('google')->allFiles()); 
     }
 }

@@ -134,11 +134,8 @@ class AdminNickController extends Controller
             var_dump($img);
             foreach($img as $img)
             {
-                $destination = 'app/public/nick/'.$img;
-                if(File::exists($destination)){
-                    File::delete($destination);
-                    var_dump($destination);
-                }
+                $destination = "/public/storage/nick".$img;
+                Sotrage::delete($destination); 
             }
             
             // foreach($request->file('images') as $file)

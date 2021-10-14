@@ -39,7 +39,7 @@
         </li>
 
         <li>
-            <a href="#">
+            <a href="{{route('admin.user.list')}}">
                 <i class='bx bx-user' ></i>
                 <span class="links_name">User</span>
             </a>
@@ -47,7 +47,7 @@
         </li>
 
         <li>
-            <a href="#">
+            <a href="{{ route('nick.index') }}">
                 <i class='bx bx-folder' ></i>
                 <span class="links_name">Nick</span>
             </a>
@@ -91,7 +91,7 @@
             {{-- @if (!session('avatar'))
                 <img class="profile-icon" src="https://salt.tikicdn.com/ts/upload/67/de/1e/90e54b0a7a59948dd910ba50954c702e.png">
             @else --}}
-                <img class="profile-icon" src="../..public/img/TeamShop.png">
+                <img class="profile-icon" src="../public/img/TeamShop.png">
             {{-- @endif --}}
             <div class="name_job">
                 <div class="name">{{session('fullname')}}</div>

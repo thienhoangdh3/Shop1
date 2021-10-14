@@ -76,104 +76,20 @@ $(document).ready(function(){
 
 
     // Delete User
-    // $(document).on('click', '.btn-delete', function(){ 
-    //     var userid = $(this).val();
-    //     if(confirm('Bạn Có Chắc Chắn Muốn Xóa Không?')){
-    //         $.ajax({
-    //            type    :'delete',
-    //            url     : 'nhanvien/'+userid,
-    //            success :function(data){
-    //                window.location.reload();
-    //                alert("Đã Xóa " + data.fullname);
-    //            }
-    //         });
-    //     }
-    // });
-
-// Edit User
-    $(document).on('click', '.btn-edit', function(){ 
-        $('#view').attr('class', 'modals')
-        // var userid = $(this).val();
-        // console.log(userid);
-        // $.ajax({
-        //     type   : "GET",
-        //     url    : 'nhanvien/' + userid + '/edit',
-        //     success: function(data){
-        //         $("h4#title").text("Sửa Thông Tin Nhân Viên ID: " + data.id)
-        //         $("input#u-id").val(data.id);
-        //         $("input#u-fullname").val(data.fullname);
-        //         $("div.select-gender select").val(data.gender);
-        //         $("input#u-address").val(data.address);
-        //         $("input#u-username").val(data.username);
-        //         $("input#u-birth").val(data.birth);
-        //         $("input#u-joining").val(data.joining);
-        //         $("input#u-phone").val(data.phone);
-        //         $("input#u-email").val(data.email);
-        //         $("input#u-identification").val(data.identification);
-        //         $("div.select-position select").val(data.dpm_id);
-        //         console.log(data);
-        //     } 
-        // });
+    $(document).on('click', '.btn-delete', function(){ 
+        var nickid = $(this).val();
+        if(confirm('Bạn Có Chắc Chắn Muốn Xóa Không?')){
+            $.ajax({
+               type    : 'get',
+               url     : nickid,
+               success :function(data){
+                   window.location.reload();
+                   alert("Đã Xóa Nick Ingame Là: " + data);
+               },
+               error: function(data){
+                    console.log(data);
+               }
+            });
+        }
     });
-
-    // $(document).on('submit', '#form-update', function(){
-    //     window.location.reload();
-    //     if(confirm('Bạn Có Chắc Chắn Muốn Sửa Không?')){
-    //         var id             = $('#u-id').val();
-    //         var fullname       = $('#u-fullname').val();
-    //         var gender         = $('#u-gender').val();
-    //         var birth          = $('#u-birth').val();
-    //         var address        = $('#u-address').val();
-    //         var email          = $('#u-email').val();
-    //         var phone          = $('#u-phone').val();
-    //         var identification = $('#u-identification').val();
-    //         var joining        = $('#u-joining').val();
-    //         var postion        = $('#u-postion').val();
-            
-
-    //         console.log(id, fullname, gender, birth, address, email, phone, identification, joining, postion);
-    //         $.ajax({
-    //            type :'PATCH',
-    //            url  : 'nhanvien/'+id,
-    //            data : {
-    //                 id             : id,
-    //                 fullname       : fullname,
-    //                 gender         : gender,
-    //                 birth          : birth,
-    //                 address        : address,
-    //                 email          : email,
-    //                 phone          : phone,
-    //                 identification : identification,
-    //                 joining        : joining,
-    //                 dpm_id         : postion,
-    //            },
-    //            success:function(data){
-    //                 window.location.reload();
-    //                 if(data){ 
-    //                         alert("Đã Sửa Thông Tin Người Dùng ID: " + data.id);
-    //                 }else{
-    //                         alert("Đã Tồn Tại Một Trường Không Hợp Lệ!");
-    //                         window.stop();
-    //                 }
-    //            },
-    //            error:function(data){
-    //                console.log(data);
-    //             //     window.location.reload();
-    //             //    alert(data.responseJSON.errors.birth);
-    //             //    alert(data.responseJSON.errors.email);
-    //             //    alert(data.responseJSON.errors.phone);
-    //             //    alert(data.responseJSON.errors.joining);
-    //                 $('div#alert-err').show();
-    //                 $('#err').text(data.responseJSON.errors.birth);
-    //                 $('#err').text(data.responseJSON.errors.email);
-    //                 $('#err').text(data.responseJSON.errors.phone_number);
-    //                 $('#err').text(data.responseJSON.errors.date_joining);
-    //                 window.stop();
-    //            }
-               
-    //         });
-    //     }
-    //     // alert("abc");
-    // });
-
 });

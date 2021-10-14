@@ -60,7 +60,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="button" id="edit"  class="btn btn-primary" data-toggle="modal" data-target="#edit">Sửa</button>
+                <a href="{{ route('nick.edit', $data->id) }}" class="btn btn-primary">Sửa</a>
               </div>
             </div>
           </div>

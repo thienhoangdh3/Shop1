@@ -99,7 +99,7 @@
                                         <a href="{{ route('nick.edit', $data->id) }}" class="btn btn-outline-warning"><i class="fas fa-pen"></i></a>
                                         {{-- <button value="{{$data->id}}" type="button" class="btn btn-outline-warning btn-edit"
                                             data-toggle="modal" data-target="#edit" >  </button> --}}
-                                        <button value="{{$data->id}}" type="button" class="btn btn-outline-danger btn-delete"> 
+                                        <button value="{{ route('nick.delete', $data->id)}}" type="button" class="btn btn-outline-danger btn-delete"> 
                                             <i class="fas fa-trash-alt"></i> </button>
                                     </td>
                                 </tr>

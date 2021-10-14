@@ -2,7 +2,7 @@
 @section('content')
     <div class="justify-content-center">
             <div class="card">
-                <div class="card-header h5"><b>Quản Lí Vật Tư</b> </div>
+                <div class="card-header h5"><b>Quản Lí Người Dùng</b> </div>
                 <nav class="navbar navbar-light bg-light justify-content-between">
                     <a data-toggle="modal" data-target="#create" class="btn btn-dark text-light"><i class="fas fa-plus pr-1"></i>  Thêm </a>
                     <form action="" method="get" class="form-inline">

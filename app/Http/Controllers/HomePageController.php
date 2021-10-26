@@ -12,4 +12,10 @@ class HomePageController extends Controller
         $datas = Nick::orderBy('created_at')->get();
         return view('layouts.main')->with(compact('datas'));
     }
+
+    public function view($id)
+    {
+        $datas = Nick::find($id);
+        return view('public.view')->with(compact('datas'));
+    }
 }

@@ -146,7 +146,14 @@ body {
     margin-left: 50px;
 }
 
-.card-img-top{
+.card-img-top {
     width: 236.5;
     height: 236.5px;
+}
+
+.main-slide {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }

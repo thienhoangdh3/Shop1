@@ -7,13 +7,13 @@
         </ol>
         <div class="carousel-inner justify-content-cente">
             <div class="carousel-item active">
-            <img class="d-block w-20" src="https://dummyimage.com/1349x300/dee2e6/6c757d.jpg" alt="First slide">
+                <img class="d-block main-slide" src="{{ asset('img/nj.png') }}" alt="First slide">
             </div>
             <div class="carousel-item">
-            <img class="d-block w-20" src="https://dummyimage.com/1500x300/dee2e6/6c757d.jpg" alt="Second slide">
+                <img class="d-block main-slide" src="{{ asset('img/nj.png') }}" alt="Second slide">
             </div>
             <div class="carousel-item">
-            <img class="d-block w-20" src="https://dummyimage.com/1500x300/dee2e6/6c757d.jpg" alt="Third slide">
+                <img class="d-block main-slide" src="{{ asset('img/nj.png') }}"  alt="Third slide">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

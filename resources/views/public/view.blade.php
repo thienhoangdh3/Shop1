@@ -19,7 +19,7 @@
                   <a href="#">
                       <img src="{{asset('storage/nick/' . $img)}}" alt="{{ $datas->ingame }}">
                   </a>
-                @endforeach
+                @endforeach 
 <!--                   
                   <a href="#">
                       <img src="https://via.placeholder.com/115x100/FF7F50/000000" alt="">

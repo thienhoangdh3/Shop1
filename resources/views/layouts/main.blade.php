@@ -17,7 +17,7 @@
                                 @php
                                     $img = json_decode($data->images, true);
                                 @endphp
-                                <a href="{{ route('home.view', $data->id) }}"><img class="card-img-top" src="{{asset('storage/nick/' . $img[0])}}" alt=""></a>
+                                <a href=""><img class="card-img-top" src="{{asset('storage/nick/' . $img[0])}}" alt=""></a>
 
                                 <!-- Product details-->
                                 <div class="card-body p-4">

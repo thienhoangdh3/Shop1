@@ -17,7 +17,7 @@
                                 @php
                                     $img = json_decode($data->images, true);
                                 @endphp
-                                <a href=""><img class="card-img-top" src="{{asset('storage/nick/' . $img[0])}}" alt=""></a>
+                                <a href="{{ route('home.view', $data->id) }}"><img class="card-img-top" src="{{asset('storage/nick/' . $img[0])}}" alt=""></a>
 
                                 <!-- Product details-->
                                 <div class="card-body p-4">
@@ -63,7 +63,7 @@
                                 </div>
                                 <!-- Product actions-->
                                 <div class="card-footer px-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a class="btn btn-danger mt-auto" href="#">Mua Ngay</a></div>
+                                    <div class="text-center"><a class="btn btn-danger mt-auto" href="{{ route('home.view', $data->id) }}">Chi tiết</a></div>
                                 </div>
                             </div>
                         </div>

@@ -19,6 +19,7 @@ use App\Http\Controllers\AdminNickController;
 
 Route::get('/', [HomePageController::class, 'index'])->name('home');
 Route::get('/detail/{id}', [HomePageController::class, 'view'])->name('home.view');
+Route::get('/buy/{id}', [HomePageController::class, 'buy'])->name('home.buy');
  
 Route::prefix('login')->group(function () {
     Route::get('/',                 [LoginController::class, 'index'])      ->name('login');

@@ -2,60 +2,70 @@
 
 @section('title', 'Nick ')
 @section('content')
-<section class="py-5">
-<div class="container bootdey">
-<div class="col-md-12">
-<section class="panel">
-      <div class="panel-body row">
-          <div class="col-md-6">
-              @php
-                  $img = json_decode($datas->images, true);
-              @endphp
-              <div class="pro-img-details">
-                  <img src="{{asset('storage/nick/' . $img[0])}}" alt="{{ $datas->ingame }}">
-              </div>
-              <div class="pro-img-list">
-                @foreach ($img as $img)
-                  <a href="#">
-                      <img src="{{asset('storage/nick/' . $img)}}" alt="{{ $datas->ingame }}">
-                  </a>
-                @endforeach 
-<!--                   
-                  <a href="#">
-                      <img src="https://via.placeholder.com/115x100/FF7F50/000000" alt="">
-                  </a>
-                  <a href="#">
-                      <img src="https://via.placeholder.com/115x100/20B2AA/000000" alt="">
-                  </a>
-                  <a href="#">
-                      <img src="https://via.placeholder.com/120x100/20B2AA/000000" alt="">
-                  </a> -->
-              </div>
-          </div>
-          <div class="col-md-6">
-              <h4 class="pro-d-title">
-                  <a href="#" class="">
-                      {{ $datas->ingame }}
-                  </a>
-              </h4>
-              <p>
-                  {!! $datas->notes !!}
-              </p>
-              <div class="product_meta">
-                  <span class="posted_in"> <strong>Class :</strong> <a rel="tag" href="#">{{ $datas->nick_class->class }}</a>.</span>
-                  <span class="tagged_as"><strong>Server :</strong> <a rel="tag" href="#">{{ $datas->nick_sv->sv_name }}</a>.</span>
-              </div>
-              <div class="m-bot15"> <strong>Giá : </strong> <span class="pro-price"> {{ $datas->price }}.000 VNĐ</span></div>
-            
-              <p>
-                  <button class="btn btn-round btn-danger" type="button"><i class="fa fa-shopping-cart"></i> Mua Ngay</button>
-              </p>
-          </div>
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h2 class="text-info"><b>TÀI KHOẢN SỐ #{{ $datas->id }}</b></h2>
+          <a href="{{ route('home') }}" class="btn btn-secondary mt-4"><i class="fas fa-long-arrow-alt-left"></i> Trở lại</a>
+        </div>
+
+        <div class="col-md-4 text-center">
+        <h2 class="text-danger mt-2"><b>{{ $datas->ingame }}</b></h2>
+          <h2 class="text-danger mt-2"><b>{{ $datas->price }}.000 VNĐ</b></h2>
+        </div>
+
+        <div class="col-md-4 text-right">
+          <a href="{{ route('home.buy', $datas->id) }}" class="btn btn-success"><h5 class="pt-2 py-2" id="buy"><b<i class="fas fa-shopping-cart"></i> MUA NGAY </b></h3></a>
+        </div>
       </div>
+
+      <div class="c-content-divider">
+        <i class="icon-dot"></i>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <h5 class="mt-3"><b>Phái: <span class="text-danger">{{ $datas->nick_class->class }}</span></b></h5>
+          <h5 class="mt-3">
+            <b>TTGT: 
+              @if ($datas->clan == 0 ) 
+                <span class="text-danger">Không</span> 
+              @else
+                <span class="text-danger">Có</span> 
+              @endif
+            </b>
+          </h5>
+        </div>
+
+        <div class="col-md-4 text-center">
+          <h5 class="mt-3"><b>Server: <span class="text-danger">{{ $datas->nick_sv->sv_name }}</span></b></h5>
+          <h5 class="mt-3"><b>Level: <span class="text-danger">{{ $datas->level }}</span></b></h5>
+        </div>
+
+        <div class="col-md-4 text-center">
+          <h5 class="mt-3"><b>Thông tin khác: <span class="text-danger">{!! $datas->notes !!}</span></b></h5>
+        </div>
+      </div>
+
+      <div class="c-content-divider">
+        <i class="icon-dot"></i>
+      </div>
+
+      <div class="container-img">
+        <p class="text-center text-primary"><b> 1 Số hình ảnh của tài khoản:</b></p>
+
+        <div class="img ">
+          @php
+              $img = json_decode($datas->images, true);
+          @endphp
+          @foreach ($img as $img)
+              <img src="{{asset('storage/nick/'.$img)}}" alt="{{ $datas->ingame }}">
+          @endforeach
+        </div>
+      </div>
+    </div>
   </section>
-  </div>
-  </div>
 
-</section>
-
+  <script src="{{ asset('js/app.js') }}"></script>
 @endsection

@@ -19,5 +19,4 @@ class Server extends Model
     {
         return $this->hasMany( 'App\Models\Nick' , 'sv_id', 'id' );
     }
-    use HasFactory;
 }

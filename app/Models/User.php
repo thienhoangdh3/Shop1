@@ -47,4 +47,9 @@ class User extends Authenticatable
 
     protected $table = 'users';
     public $timestamps = false; 
+
+    public function reciept()
+    {
+        return $this->hasMany( 'App\Models\Reciept' , 'user_id', 'id' );
+    }
 }
